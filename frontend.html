@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      #container {
+        width: 80%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 26%);
+        gap: 20px;
+      }
+      #container > div {
+        text-align: center;
+        border: 1px solid saddlebrown;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      #container > div > :first-child {
+        width: 100%;
+        margin: auto;
+      }
+      #container > div > :nth-child(4) {
+        width: 100px;
+        display: block;
+        margin: auto;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      let investorArr = JSON.parse(localStorage.getItem("investorsData"));
+
+      investorArr.forEach((ele) => {
+        let card = document.createElement("div");
+        let a = document.createElement("img");
+        a.src = ele.imgurl;
+        let b = document.createElement("h1");
+        b.innerText = ele.name;
+        let c = document.createElement("p");
+        c.innerText = ele.role;
+        let d = document.createElement("img");
+        d.src = ele.com_logo;
+        card.append(a, b, c, d);
+        document.querySelector("#container").append(card);
+      });
+    </script>
+  </body>
+</html>
