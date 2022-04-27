@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      #form {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin: auto;
+      }
+      #form > input:nth-of-type(1n) {
+        margin-bottom: 10px;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container">
+      <form id="form">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your full name" />
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter email" />
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter password"
+          minlength="8"
+          maxlength="25"
+        />
+        <input type="submit" />
+      </form>
+    </div>
+    <script>
+      document.querySelector("#form").addEventListener("submit", myFunc);
+
+      let User = JSON.parse(localStorage.getItem("userdata")) || [];
+
+      function myFunc() {
+        event.preventDefault();
+
+        let userObj = {
+          name: form.name.value,
+          email: form.email.value,
+          password: form.password.value,
+        };
+
+        User.push(userObj);
+
+        localStorage.setItem("userdata", JSON.stringify(User));
+
+        window.location.href = "signin.html";
+      }
+    </script>
+  </body>
+</html>
