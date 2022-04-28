@@ -14,6 +14,18 @@
       #form > input:nth-child(1n) {
         margin-bottom: 10px;
       }
+      p {
+        display: flex;
+        justify-content: center;
+        margin-left: 160px;
+      }
+      p * {
+        display: block;
+        text-decoration: none;
+      }
+      a {
+        color: red;
+      }
     </style>
     <title>Document</title>
   </head>
@@ -25,26 +37,27 @@
       <input type="password" id="password" />
       <input type="submit" />
     </form>
+    <p>Do not have an account? &nbsp; <a href="signup.html">Signup</a></p>
   </body>
   <script>
     document.querySelector("#form").addEventListener("submit", fnSignIn);
 
-    fnSignIn();
-
     function fnSignIn() {
       event.preventDefault();
-      let Data = JSON.parse(localStorage.getItem("userdata")) || [];
+      let Data = JSON.parse(localStorage.getItem("userdata"));
 
       let userData = [];
 
       let userObj = {
-        name: form.name.value,
         email: form.email.value,
+        password: form.password.value,
       };
       userData.push(userObj);
+      if (Data.email == userData.email && Data.password == userData.password) {
+        localStorage.setItem("loggedin", JSON.stringify(true));
+        window.location.href = "mens.html";
+        alert("login successful!");
+      }
     }
-
-    console.log(Data, userData);
-    // if(Data.indexof(userData[0])) alert("Login Successful");
   </script>
 </html>

@@ -5,17 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      #nav {
+        width: 98%;
+        margin: auto;
+        margin-top: 5px;
+        border: 1px solid saddlebrown;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        justify-content: space-between;
+        border-radius: 12px;
+        background-color: #1c2937;
+        color: white;
+        cursor: default;
+      }
+      #nav :nth-child(2) {
+        width: 30%;
+        display: flex;
+        justify-content: space-evenly;
+      }
+      #nav :nth-child(2) > h4 {
+        cursor: pointer;
+      }
       h2 {
         text-decoration: underline;
         margin-left: 30px;
+        margin-top: 20px;
       }
       #container {
         display: grid;
         grid-template-columns: repeat(4, 22%);
         gap: 20px;
         justify-content: center;
-        width: 90%;
         margin: auto;
+        margin-top: 10px;
       }
       #card {
         box-shadow: 0px 0px 14px 6px rgb(240, 240, 240);
@@ -37,6 +65,10 @@
         text-decoration: line-through;
         margin-left: 8px;
       }
+      a {
+        text-decoration: none;
+        color: white;
+      }
       #card > :nth-child(5) {
         display: block;
         margin: auto;
@@ -52,6 +84,17 @@
     <title>Document</title>
   </head>
   <body>
+    <div id="nav">
+      <div>
+        <h3>Reebok</h3>
+      </div>
+      <div>
+        <a href="mens.html"><h4>Men</h4></a>
+        <a href="womens.html"><h4>Women</h4></a>
+        <a href="signin.html"><h4>Login</h4></a>
+        <a href="signup.html"><h4>Signup</h4></a>
+      </div>
+    </div>
     <h2>WOMEN'S PAGE</h2>
     <div id="container"></div>
   </body>
@@ -513,6 +556,12 @@
         strikedoffprice: 1899,
       },
     ];
+
+    let login = JSON.parse(localStorage.getItem("loggedin"));
+
+    if (!login || null) {
+      window.location.href = "signin.html";
+    }
 
     fnDisplay(womensData);
 
